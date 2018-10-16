@@ -1,4 +1,4 @@
-package nudge
+package main
 
 import (
 	"flag"

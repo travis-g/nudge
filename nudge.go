@@ -39,9 +39,12 @@ func parseFlags() {
 	flag.Parse()
 }
 
-// Parses a key combination in the format `key+mod...` into KeyTap components
+// Parses a key combination in the format `key(+mod)*` into KeyTap components
 func parseKeys(flag string) (string, interface{}) {
-	keys := strings.Split(strings.ToLower(flag), "+")
+	// Remove spaces and uppercase letters
+	cleaned := strings.ToLower(strings.Replace(flag, " ", "", -1))
+
+	keys := strings.Split(cleaned, "+")
 	switch count := len(keys); count {
 	case 0:
 		return "f16", nil
